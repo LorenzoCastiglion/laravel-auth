@@ -62,15 +62,28 @@
                         @enderror
                       </div>
 
-                      <div class="mb-3">
-                        <label for="diff_lvl" class="form-label">Difficolta</label>
-                        <input type="number" class="form-control @error('diff_lvl') is-invalid @enderror" id="diff_lvl" name="diff_lvl" value="{{old('diff_lvl', $project->diff_lvl)}}">
+                      <div>
+                        <label for="diff_lvl">Livello di difficoltà (da 1 a 10)</label>
+                        <select name="diff_lvl" class="form-control @error('diff_lvl') is-invalid @enderror">
+                            <option value="0" {{old('diff_lvl', $project->diff_lvl == '0' ? 'selected' : '') }}>0</option>
+                            <option value="1" {{old('diff_lvl', $project->diff_lvl == '1' ? 'selected' : '') }}>1</option>
+                            <option value="2" {{old('diff_lvl', $project->diff_lvl == '2' ? 'selected' : '') }}>2</option>
+                            <option value="3" {{old('diff_lvl', $project->diff_lvl == '3' ? 'selected' : '') }}>3</option>
+                            <option value="4" {{old('diff_lvl', $project->diff_lvl == '4' ? 'selected' : '') }}>4</option>
+                            <option value="5" {{old('diff_lvl', $project->diff_lvl == '5' ? 'selected' : '') }}>5</option>
+                            <option value="6" {{old('diff_lvl', $project->diff_lvl == '6' ? 'selected' : '') }}>6</option>
+                            <option value="7" {{old('diff_lvl', $project->diff_lvl == '7' ? 'selected' : '') }}>7</option>
+                            <option value="8" {{old('diff_lvl', $project->diff_lvl == '8' ? 'selected' : '') }}>8</option>
+                            <option value="9" {{old('diff_lvl', $project->diff_lvl == '9' ? 'selected' : '') }}>9</option>
+                            <option value="10" {{old('diff_lvl', $project->diff_lvl == '10' ? 'selected' : '') }}>10</option>
+                        </select>
+                        
                         @error('diff_lvl')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{$message}}</div>
                         @enderror
-                      </div>
+                    </div>
 
-                      {{-- <div class="d-flex">
+                      <div class="d-flex">
                         <div class="media me-4">
                             <img class="shadow" width="150" src="{{asset('storage/' . $project->cover_image)}}" alt="{{$project->name}}">
                         </div>
@@ -81,7 +94,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
                       <button type="submit" class="btn btn-success">Submit</button>
                       <button type="reset" class="btn btn-primary">Reset</button>
                 </form>

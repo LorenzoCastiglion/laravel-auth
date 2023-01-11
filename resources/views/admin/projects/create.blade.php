@@ -37,19 +37,35 @@
                         <label for="git_link" class="form-label">GitHub Link</label>
                         <input type="text" class="form-control @error('git_link') is-invalid @enderror" id="git_link" name="git_link">
                       </div>
-                      <div class="mb-3">
-                        <label for="diff_lvl" class="form-label">Perceived Difficulty at that time</label>
-                        <input type="number" class="form-control @error('diff_lvl') is-invalid @enderror" id="diff_lvl" name="diff_lvl">
-                      </div>
+                      <div>
+                        <label for="diff_lvl">Perceived difficulty at that time</label>
+                        <select name="diff_lvl" class="form-control @error('diff_lvl') is-invalid @enderror">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                       
+                        @error('diff_lvl')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
                      
                       
-                      {{-- <div class="mb-3">
+                      <div class="mb-3">
                         <label for="cover_image" class="form-label">Immagine</label>
                         <input type="file" name="cover_image" id="cover_image" class="form-control  @error('cover_image') is-invalid @enderror" >
                         @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                      </div> --}}
+                      </div>
                       <button type="submit" class="btn btn-success">Submit</button>
                       <button type="reset" class="btn btn-primary">Reset</button>
                 </form>

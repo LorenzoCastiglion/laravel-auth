@@ -31,7 +31,7 @@ class StoreProjectRequest extends FormRequest
             'team' => 'nullable',
             'git_link' => 'nullable',
             'diff_lvl' => 'nullable',
-            // 'cover_image' => 'nullable|image|max: 1000'
+            'cover_image' => 'nullable|image|max: 1000'
         ];
     }
     public function messages(){

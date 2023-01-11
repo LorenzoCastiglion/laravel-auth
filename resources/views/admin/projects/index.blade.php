@@ -10,10 +10,11 @@
     @endif
     <table class="table table-striped">
         <thead>
-            <tr>
+            <tr class="">
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col">Description</th>
+                <th scope="col">Difficulty</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -25,13 +26,14 @@
                     <td><a href="{{ route('admin.projects.show', $project->slug) }}"
                             title="View project">{{ $project->name }}</a></td>
                     <td>{{ Str::limit($project->description, 100) }}</td>
-                    <td><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
+                    <td class="text-center">{{$project->diff_lvl}}</td>
+                    <td class="text-center"><a class="link-secondary" href="{{ route('admin.projects.edit', $project->slug) }}"
                             title="Edit project"><i class="fa-solid fa-pen"></i></a></td>
-                    <td>
+                    <td >
                         <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="delete-button btn btn-danger ms-3"
+                            <button type="submit" class="delete-button btn btn-danger ms-3 "
                                 data-item-title="{{ $project->name }}"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </td>
