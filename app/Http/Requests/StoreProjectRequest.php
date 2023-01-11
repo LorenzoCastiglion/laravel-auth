@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
+class StoreProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:posts|max:150|min:3',
+            'name' => 'required|unique:projects|max:150|min:3',
             'description' => 'nullable',
-            'dev_lang' => 'nullable',
+            'dev_lang' => 'required|max:255',
             'framework' => 'nullable',
             'team' => 'nullable',
             'git_link' => 'nullable',
@@ -39,7 +39,8 @@ class StorePostRequest extends FormRequest
             'name.required' => 'Il titolo è obbligatorio.',
             'name.min' => 'Il titolo deve essere lungo almeno :min caratteri.',
             'name.max' => 'Il titolo non può superare i :max caratteri.',
-            'name.unique:posts' => 'Il titolo esiste già'
+            'name.unique:projects' => 'Il titolo esiste già',
+            'dev_lang.required'=> 'il paramentro è obbligatorio'
         ];
     }
 }

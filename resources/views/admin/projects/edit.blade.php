@@ -19,17 +19,18 @@
                     @csrf
                     @method('PUT')
                       <div class="mb-3">
-                        <label for="name" class="form-label">Titolo</label>
+                        <label for="name" class="form-label">Project Name</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name', $project->name)}}">
                         @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>
                       <div class="mb-3">
-                        <label for="descritpion" class="form-label">descritpion</label>
+                        <label for="descritpion" class="form-label">Descritpion</label>
                         <textarea class="form-control" id="descritpion" name="descritpion">{{old('descritpion', $project->description)}}</textarea>
                       </div>
-                      <div class="d-flex">
+                      
+                      {{-- <div class="d-flex">
                         <div class="media me-4">
                             <img class="shadow" width="150" src="{{asset('storage/' . $project->cover_image)}}" alt="{{$project->name}}">
                         </div>
@@ -40,7 +41,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
                       <button type="submit" class="btn btn-success">Submit</button>
                       <button type="reset" class="btn btn-primary">Reset</button>
                 </form>

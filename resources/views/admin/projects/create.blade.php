@@ -1,40 +1,55 @@
 @extends('layouts.admin')
 
 @section('content')
-      {{-- <div>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-        </div> --}}
+     
     <h1>Create Post</h1>
         <div class="row bg-white">
             <div class="col-12">
-                <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data" class="p-4">
+                <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data" class="p-4">
                     @csrf
                       <div class="mb-3">
-                        <label for="title" class="form-label">Titolo</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
-                        @error('title')
+                        <label for="name" class="form-label">Project Name</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name">
+                        @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                       </div>
                       <div class="mb-3">
-                        <label for="content" class="form-label">Content</label>
-                        <textarea class="form-control" id="content" name="content"></textarea>
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
                       </div>
                       <div class="mb-3">
+                        <label for="dev_lang" class="form-label">Used Dev Languages</label>
+                        <input type="text" class="form-control @error('dev_lang') is-invalid @enderror" id="dev_lang" name="dev_lang">
+                        @error('dev_lang')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
+                        <label for="framework" class="form-label">Frameworks</label>
+                        <input type="text" class="form-control @error('framework') is-invalid @enderror" id="framework" name="framework">
+                      </div>
+                      <div class="mb-3">
+                        <label for="team" class="form-label">Team Members</label>
+                        <input type="text" class="form-control @error('team') is-invalid @enderror" id="team" name="team">
+                      </div>
+                      <div class="mb-3">
+                        <label for="git_link" class="form-label">GitHub Link</label>
+                        <input type="text" class="form-control @error('git_link') is-invalid @enderror" id="git_link" name="git_link">
+                      </div>
+                      <div class="mb-3">
+                        <label for="diff_lvl" class="form-label">Perceived Difficulty at that time</label>
+                        <input type="number" class="form-control @error('diff_lvl') is-invalid @enderror" id="diff_lvl" name="diff_lvl">
+                      </div>
+                     
+                      
+                      {{-- <div class="mb-3">
                         <label for="cover_image" class="form-label">Immagine</label>
                         <input type="file" name="cover_image" id="cover_image" class="form-control  @error('cover_image') is-invalid @enderror" >
                         @error('cover_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                      </div>
+                      </div> --}}
                       <button type="submit" class="btn btn-success">Submit</button>
                       <button type="reset" class="btn btn-primary">Reset</button>
                 </form>

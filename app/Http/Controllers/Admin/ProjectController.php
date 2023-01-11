@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+
 
 class ProjectController extends Controller
 {
@@ -37,9 +37,18 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(StoreProjectRequest $request)
     {
-       
+        $data = $request->validated();
+        $slug = Project::generateSlug($request->name);
+        $data['slug'] = $slug;
+        // if($request->hasFile('cover_image')){
+        //     $path = Storage::disk('public')->put('project_images', $request->cover_image);
+        //     $data['cover_image'] = $path;
+        // }
+
+        $new_project = Project::create($data);
+        return redirect()->route('admin.projects.show', $new_project->slug);
     }
 
     /**
@@ -72,9 +81,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+        $slug = Project::generateSlug($request->name);
+        $data['slug'] = $slug;
+        $project->update($data);
+        return redirect()->route('admin.projects.index')->with('message', "$project->name updated successfully");
     }
 
     /**
