@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Sail\Console\PublishCommand;
 
+use function PHPSTORM_META\type;
 
 class Project extends Model
 {
@@ -16,4 +19,10 @@ class Project extends Model
     {
         return Str::slug($name, '-');
     }
+
+    public function types():BelongsTo {
+
+        return $this->belongsTo(Type::class);
+    }
+
 }
