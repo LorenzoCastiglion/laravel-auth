@@ -25,14 +25,14 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:projects|max:150|min:3',
-            'type_id' => 'required|exists:types,id',
+            'type_id' => 'nullable|exists:types,id',
             'description' => 'nullable',
             'dev_lang' => 'required|max:255',
             'framework' => 'nullable',
             'team' => 'nullable',
             'git_link' => 'nullable',
             'diff_lvl' => 'nullable',
-            'cover_image' => 'nullable|image|max: 1000'
+            'cover_image' => 'nullable|image|max:1000'
         ];
     }
     public function messages(){
@@ -42,7 +42,7 @@ class StoreProjectRequest extends FormRequest
             'name.max' => 'Il titolo non può superare i :max caratteri.',
             'name.unique:projects' => 'Il titolo esiste già',
             'dev_lang.required'=> 'il paramentro è obbligatorio',
-            'type_id.required' => 'il paramentro è obbligatorio'
+            
         ];
     }
 }
