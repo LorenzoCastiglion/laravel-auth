@@ -13,7 +13,7 @@ class UpdateTypeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'workflow' => ['required'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'workflow.required' => 'inserire un parametro alternativo',
+        ];
+    }
+
 }
