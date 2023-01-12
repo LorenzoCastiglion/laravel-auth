@@ -13,7 +13,7 @@ use function PHPSTORM_META\type;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['workflow_id', 'name', 'slug', 'description','dev_lang','framework','team', 'git_link', 'diff_lvl', 'cover_image'];
+    protected $fillable = ['type_id', 'name', 'slug', 'description','dev_lang','framework','team', 'git_link', 'diff_lvl', 'cover_image'];
 
     public static function generateSlug($name)
     {

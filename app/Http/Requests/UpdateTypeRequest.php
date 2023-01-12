@@ -24,13 +24,14 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'workflow' => ['required'],
+            'workflow' => ['required','max:20'],
         ];
     }
     public function messages()
     {
         return [
             'workflow.required' => 'inserire un parametro alternativo',
+            'workflow.max' => 'Il parametro non può superare i :max caratteri.',
         ];
     }
 

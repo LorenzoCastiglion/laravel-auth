@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:projects|max:150|min:3',
-            'workflow_id' => 'required|exists:types,id',
+            'type_id' => 'required|exists:types,id',
             'description' => 'nullable',
             'dev_lang' => 'required|max:255',
             'framework' => 'nullable',
@@ -42,7 +42,7 @@ class StoreProjectRequest extends FormRequest
             'name.max' => 'Il titolo non può superare i :max caratteri.',
             'name.unique:projects' => 'Il titolo esiste già',
             'dev_lang.required'=> 'il paramentro è obbligatorio',
-            'workflow_id.required' => 'il paramentro è obbligatorio'
+            'type_id.required' => 'il paramentro è obbligatorio'
         ];
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 
+
+
 class TypeController extends Controller
 {
     /**
@@ -65,7 +67,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        return view('admin.types.show', compact('type'));
+        return view('admin.types.edit', compact('type'));
     }
 
     /**

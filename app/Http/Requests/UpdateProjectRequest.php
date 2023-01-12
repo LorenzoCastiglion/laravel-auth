@@ -25,7 +25,7 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('projects')->ignore($this->project)],
-            'workflow_id' => ['required|exists:types,id'],
+            'type_id' => ['required,exists:types,id'],
             'description' => ['nullable'],
             'dev_lang' => ['required'],
             'framework' => ['nullable'],
@@ -39,10 +39,12 @@ class UpdateProjectRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'Il titolo è obbligatorio.',
+            'type_id.required'=> 'parametro richiesto',
             'name.min' => 'Il titolo deve essere lungo almeno :min caratteri.',
             'name.max' => 'Il titolo non può superare i :max caratteri.',
             'name.unique:projects' => 'Il titolo esiste già',
-            'dev_lang.required'=> 'il paramentro è obbligatorio'
+            'dev_lang.required'=> 'il paramentro è obbligatorio',
+            
         ];
     }
 }
