@@ -25,6 +25,7 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('projects')->ignore($this->project)],
+            'workflow_id' => ['required|exists:types,id'],
             'description' => ['nullable'],
             'dev_lang' => ['required'],
             'framework' => ['nullable'],
