@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
+use App\Models\Language;
 
 
 class ProjectController extends Controller
@@ -15,31 +16,33 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
         $projects = Project::all();
         $types = Type::all();
-        return view('admin.projects.index', compact('projects','types'));
+        
+        return view('admin.projects.index', compact('projects','types', ));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function create(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.create',compact('project', 'types'));
+        $languages = Language::all();
+        return view('admin.projects.create',compact('project', 'types', 'languages'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function store(StoreProjectRequest $request)
     {
@@ -52,6 +55,10 @@ class ProjectController extends Controller
         }
 
         $new_project = Project::create($data);
+
+        if($request->has('languages')){
+            $new_project->languages()->attach($request->languages);
+        }
         return redirect()->route('admin.projects.show', $new_project->slug);
     }
 
@@ -59,24 +66,26 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function show(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.show', compact('project','types'));
+        $languages = Language::all();
+        return view('admin.projects.show', compact('project','types', 'languages'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $languages = Language::all();
+        return view('admin.projects.edit', compact('project', 'types', 'languages'));
     }
 
     /**
@@ -84,7 +93,7 @@ class ProjectController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
@@ -102,6 +111,11 @@ class ProjectController extends Controller
         }
 
         $project->update($data);
+
+        if($request->has('languages')){
+            $project->languages()->sync($request->languages);
+        }
+
         return redirect()->route('admin.projects.index')->with('message', "$project->name updated successfully");
     }
 
@@ -109,7 +123,7 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function destroy(Project $project)
     {
