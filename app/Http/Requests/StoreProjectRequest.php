@@ -27,7 +27,7 @@ class StoreProjectRequest extends FormRequest
             'name' => 'required|unique:projects|max:150|min:3',
             'type_id' => 'nullable|exists:types,id',
             'description' => 'nullable',
-            'dev_lang' => 'required|max:255',
+            // 'dev_lang' => 'required|max:255',
             'framework' => 'nullable',
             'team' => 'nullable',
             'git_link' => 'nullable',

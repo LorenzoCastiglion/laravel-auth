@@ -18,14 +18,14 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="dev_lang" class="form-label">Used Dev Languages</label>
                     <input type="text" class="form-control @error('dev_lang') is-invalid @enderror" id="dev_lang"
                         name="dev_lang">
                     @error('dev_lang')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="mb-3">
                     <label for="framework" class="form-label">Frameworks</label>
                     <input type="text" class="form-control @error('framework') is-invalid @enderror" id="framework"
