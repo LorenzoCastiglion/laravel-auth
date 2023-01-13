@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+
+@if(session()->has('message'))
+<div class="alert alert-success mb-3 mt-3">
+    {{ session()->get('message') }}
+</div>
+@endif
+
     <div class="d-flex justify-content-between align-content-center align-items-center">
         <h1>Workflows</h1>
         <div class="text-end">
@@ -8,11 +15,7 @@
         </div>
     </div>
 
-    @if(session()->has('message'))
-    <div class="alert alert-success mb-3 mt-3">
-        {{ session()->get('message') }}
-    </div>
-    @endif
+    
     <table class="table table-striped">
         <thead>
         <tr>
@@ -41,5 +44,6 @@
         @endforeach
         </tbody>
     </table>
+   
     @include('partials.admin.modal-delete')
 @endsection
