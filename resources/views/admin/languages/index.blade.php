@@ -9,10 +9,8 @@
 @endif
 
     <div class="d-flex justify-content-between align-content-center align-items-center">
-        <h1>Workflows</h1>
-        <div class="text-end">
-            <a class="btn btn-success" href="{{route('admin.languages.create')}}">Crea nuova categoria</a>
-        </div>
+        <h1>Coding Languages</h1>
+       
     </div>
 
     
@@ -21,18 +19,15 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Projects</th>
-            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($languages as $language)
+        @foreach($languages as $type)
                 <tr>
                     <th scope="row">{{$type->id}}</th>
-                    <td><a href="{{route('admin.languages.show', $type->slug)}}" title="View Ctegory">{{$type->workflow}}</a></td>
-                    
-                    <td><a class="link-secondary" href="{{route('admin.languages.edit', $type->slug)}}" title="Edit Workflow"><i class="fa-solid fa-pen"></i></a></td>
+                   
+                    <th scope="row">{{$type->name}}</th>
                     <td>
                         <form action="{{route('admin.languages.destroy', $type->slug)}}" method="POST">
                         @csrf
