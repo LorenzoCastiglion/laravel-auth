@@ -1,14 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>projects</h1>
-    <a class="btn btn-success" href="{{ route('admin.projects.create') }}">Crea nuovo project</a>
-    @if (session()->has('message'))
-        <div class="alert alert-success mb-3 mt-3">
-            {{ session()->get('message') }}
-        </div>
-    @endif
-    
+    <div class=" d-flex justify-content-between my-4 align-content-center align-items-center">
+        <h1 class=" text-uppercase m-0">Projects</h1>
+        <a class="btn btn-success align-self-end" href="{{ route('admin.projects.create') }}">Crea nuovo project</a>
+        @if (session()->has('message'))
+            <div class="alert alert-success mb-3 mt-3">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        
+    </div>
     <div class="table-responsive">
         
         <table  class="table table-striped table-bordered table-sm">

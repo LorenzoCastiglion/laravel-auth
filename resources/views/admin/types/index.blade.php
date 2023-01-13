@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Workflows</h1>
-    <div class="text-end">
-        <a class="btn btn-success" href="{{route('admin.types.create')}}">Crea nuova categoria</a>
+    <div class="d-flex justify-content-between align-content-center align-items-center">
+        <h1>Workflows</h1>
+        <div class="text-end">
+            <a class="btn btn-success" href="{{route('admin.types.create')}}">Crea nuova categoria</a>
+        </div>
     </div>
 
     @if(session()->has('message'))
