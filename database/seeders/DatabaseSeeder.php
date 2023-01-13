@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ProjectTableSeeder::class,
+            TypeSeeder::class,
+            LanguageSeeder::class
         ]);
     }
 }
