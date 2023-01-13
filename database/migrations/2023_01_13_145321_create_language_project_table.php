@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('language_project', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete();
+           
+            $table->unsignedBigInteger('language_id')->nullable();
+            $table->foreign('language_id')->references('id')->on('languages')->cascadeOnDelete();
         });
     }
 
