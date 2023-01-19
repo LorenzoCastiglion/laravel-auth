@@ -112,6 +112,12 @@ class ProjectController extends Controller
 
         $project->update($data);
 
+
+        if($request->has('tags')){
+            $project->languages()->sync($request->languages);
+        } else {
+            $project->languages()->sync([]);
+        }
         
             $project->languages()->sync($request->languages);
         
